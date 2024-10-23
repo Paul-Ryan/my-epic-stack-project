@@ -242,7 +242,7 @@ function App() {
 function Logo() {
 	return (
 		<Link to="/" className="group grid leading-snug">
-			Home
+			Paul's Movie List
 		</Link>
 	)
 }
