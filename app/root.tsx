@@ -197,7 +197,7 @@ function App() {
 	const searchBar = isOnSearchPage ? null : <SearchBar status="idle" />
 	const allowIndexing = data.ENV.ALLOW_INDEXING !== 'false'
 	useToast(data.toast)
-
+console.log('root data', data)
 	return (
 		<Document
 			nonce={nonce}

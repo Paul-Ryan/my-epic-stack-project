@@ -29,7 +29,7 @@ export default function Index() {
 		<main className="font-poppins flex h-full flex-col gap-4 px-8 sm:gap-8">
 			<div className="flex flex-col sm:flex-row sm:gap-12">
 				<div className="sm:basis-24">
-					<h2 className="text-h2">Favorite Movies</h2>
+					<h2 className="text-lg">Favorite Movies</h2>
 				</div>
 				<ul className="mt-2 flex max-w-[1200px] grow basis-auto flex-col flex-wrap justify-center sm:col-span-5 sm:mt-0 sm:grid sm:grid-flow-col sm:grid-cols-3 sm:grid-rows-6 sm:gap-4">
 					{favoriteMovies.map((movie) => (
@@ -39,7 +39,7 @@ export default function Index() {
 			</div>
 			<div className="flex flex-col sm:flex-row sm:gap-12">
 				<div className="sm:basis-24">
-					<h2 className="text-h2">Favorite Shows</h2>
+					<h2 className="text-lg">Favorite Shows</h2>
 				</div>
 				<ul className="mt-2 flex max-w-[1200px] grow basis-auto flex-col flex-wrap justify-center sm:col-span-5 sm:mt-0 sm:grid sm:grid-flow-col sm:grid-cols-3 sm:grid-rows-6 sm:gap-4">
 					{favoriteShows.map((show) => (
