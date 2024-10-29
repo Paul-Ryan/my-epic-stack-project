@@ -60,8 +60,8 @@ export default function UsersRoute() {
 	}
 
 	return (
-		<div className="container mb-48 mt-36 flex flex-col items-center justify-center gap-6">
-			<h1 className="text-h1">Epic Notes Users</h1>
+		<div className="container flex flex-col items-start gap-6">
+			<h2 className="text-h2">Movie List Users</h2>
 			<div className="w-full max-w-[700px]">
 				<SearchBar status={data.status} autoFocus autoSubmit />
 			</div>
@@ -70,7 +70,7 @@ export default function UsersRoute() {
 					data.users.length ? (
 						<ul
 							className={cn(
-								'flex w-full flex-wrap items-center justify-center gap-4 delay-200',
+								'flex w-full flex-wrap items-center gap-4 delay-200',
 								{ 'opacity-50': isPending },
 							)}
 						>

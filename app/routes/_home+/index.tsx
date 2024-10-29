@@ -1,12 +1,4 @@
 import { type MetaFunction } from '@remix-run/node'
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipProvider,
-	TooltipTrigger,
-} from '#app/components/ui/tooltip.tsx'
-import { cn } from '#app/utils/misc.tsx'
-// import { logos } from './logos/logos.ts'
 
 export const meta: MetaFunction = () => [{ title: 'Epic Notes' }]
 
@@ -32,51 +24,24 @@ const favoriteShows = [
 	'Firefly',
 ]
 
-// // Tailwind Grid cell classes lookup
-// const columnClasses: Record<(typeof logos)[number]['column'], string> = {
-// 	1: 'xl:col-start-1',
-// 	2: 'xl:col-start-2',
-// 	3: 'xl:col-start-3',
-// 	4: 'xl:col-start-4',
-// 	5: 'xl:col-start-5',
-// }
-// const rowClasses: Record<(typeof logos)[number]['row'], string> = {
-// 	1: 'xl:row-start-1',
-// 	2: 'xl:row-start-2',
-// 	3: 'xl:row-start-3',
-// 	4: 'xl:row-start-4',
-// 	5: 'xl:row-start-5',
-// 	6: 'xl:row-start-6',
-// }
-
 export default function Index() {
 	return (
-		<main className="font-poppins flex flex-col h-full place-items-center">
-			<div className="grid place-items-center px-4 py-16 xl:grid-cols-6 xl:gap-24">
-				<div className="xl:col-span-1">
-					<h2>Favorite Movies</h2>
+		<main className="font-poppins flex h-full flex-col gap-4 px-8 sm:gap-8">
+			<div className="flex flex-col sm:flex-row sm:gap-12">
+				<div className="sm:basis-24">
+					<h2 className="text-lg">Favorite Movies</h2>
 				</div>
-				<ul className="mt-16 flex max-w-3xl flex-wrap justify-center gap-2 sm:gap-4 xl:col-span-5 xl:mt-0 xl:grid xl:grid-flow-col xl:grid-cols-5 xl:grid-rows-6">
-					{favoriteMovies.map((movie, i) => (
-						<li
-							key={movie}
-							className={cn(
-								// columnClasses[logo.column],
-								// rowClasses[logo.row],
-								'animate-roll-reveal [animation-fill-mode:backwards]',
-							)}
-							style={{ animationDelay: `${i * 0.07}s` }}
-						>
-							{movie}
-						</li>
+				<ul className="mt-2 flex max-w-[1200px] grow basis-auto flex-col flex-wrap justify-center sm:col-span-5 sm:mt-0 sm:grid sm:grid-flow-col sm:grid-cols-3 sm:grid-rows-6 sm:gap-4">
+					{favoriteMovies.map((movie) => (
+						<li key={movie}>{movie}</li>
 					))}
 				</ul>
 			</div>
-			<div className="grid place-items-center px-4 py-16 xl:grid-cols-6 xl:gap-24">
-				<div className="xl:col-span-1">
-					<h2>Favorite Shows</h2>
+			<div className="flex flex-col sm:flex-row sm:gap-12">
+				<div className="sm:basis-24">
+					<h2 className="text-lg">Favorite Shows</h2>
 				</div>
-				<ul className="mt-16 flex max-w-3xl flex-wrap justify-center gap-2 sm:gap-4 xl:col-span-5 xl:mt-0 xl:grid xl:grid-flow-col xl:grid-cols-5 xl:grid-rows-6">
+				<ul className="mt-2 flex max-w-[1200px] grow basis-auto flex-col flex-wrap justify-center sm:col-span-5 sm:mt-0 sm:grid sm:grid-flow-col sm:grid-cols-3 sm:grid-rows-6 sm:gap-4">
 					{favoriteShows.map((show) => (
 						<li key={show}>{show}</li>
 					))}
