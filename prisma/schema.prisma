@@ -21,10 +21,28 @@ model User {
 
   image       UserImage?
   password    Password?
+  movies      Movie[]
   notes       Note[]
   roles       Role[]
   sessions    Session[]
   connections Connection[]
+}
+
+model Movie {
+  id      String @id @default(cuid())
+  title   String
+  release DateTime
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  owner   User   @relation(fields: [ownerId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  ownerId String
+
+  // non-unique foreign key
+  @@index([ownerId])
+  // This helps our order by in the user search a LOT
+  @@index([ownerId, updatedAt])
 }
 
 model Note {

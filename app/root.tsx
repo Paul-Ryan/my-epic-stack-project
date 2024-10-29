@@ -71,7 +71,7 @@ export const links: LinksFunction = () => {
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
 	return [
-		{ title: data ? 'Epic Notes' : 'Error | Epic Notes' },
+		{ title: data ? 'Movie List' : 'Error | Movie List' },
 		{ name: 'description', content: `Your own captain's log` },
 	]
 }
@@ -206,9 +206,9 @@ function App() {
 			env={data.ENV}
 		>
 			<div className="flex h-screen flex-col justify-between">
-				<header className="container py-6">
-					<nav className="flex flex-wrap items-center justify-between gap-4 sm:flex-nowrap md:gap-8">
-					<Logo />
+				<header className="mb-8 flex w-full flex-row px-8 py-6 border-b border-gray-light">
+					<nav className="flex w-full flex-wrap items-center justify-between gap-4 sm:flex-nowrap md:gap-8">
+						<Logo />
 						<div className="ml-auto hidden max-w-sm flex-1 sm:block">
 							{searchBar}
 						</div>
@@ -229,7 +229,7 @@ function App() {
 					<Outlet />
 				</div>
 
-				<div className="container flex justify-between pb-5">
+				<div className="container flex justify-start pb-4 pl-5">
 					<ThemeSwitch userPreference={data.requestInfo.userPrefs.theme} />
 				</div>
 			</div>
@@ -241,8 +241,9 @@ function App() {
 
 function Logo() {
 	return (
+		// <Link to="/" className="group grid text-xl font-semibold leading-snug">
 		<Link to="/" className="group grid leading-snug">
-			Paul's Movie List
+			<h1 className="text-h1 text-xl">Paul's Movie List</h1>
 		</Link>
 	)
 }
