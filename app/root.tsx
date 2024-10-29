@@ -71,7 +71,7 @@ export const links: LinksFunction = () => {
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
 	return [
-		{ title: data ? 'Epic Notes' : 'Error | Epic Notes' },
+		{ title: data ? 'Movie List' : 'Error | Movie List' },
 		{ name: 'description', content: `Your own captain's log` },
 	]
 }
@@ -197,7 +197,7 @@ function App() {
 	const searchBar = isOnSearchPage ? null : <SearchBar status="idle" />
 	const allowIndexing = data.ENV.ALLOW_INDEXING !== 'false'
 	useToast(data.toast)
-console.log('root data', data)
+
 	return (
 		<Document
 			nonce={nonce}
