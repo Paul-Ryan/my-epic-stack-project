@@ -23,7 +23,7 @@ export const meta: MetaFunction<
 		{ title: `${displayName}'s movies | Movie List` },
 		{
 			name: 'description',
-			content: `Checkout ${displayName}'s ${movieCount} ${movieText} on Epic Notes`,
+			content: `Checkout ${displayName}'s ${movieCount} ${movieText}`,
 		},
 	]
 }

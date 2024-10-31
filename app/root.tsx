@@ -11,6 +11,7 @@ import {
 	Links,
 	Meta,
 	Outlet,
+	redirect,
 	Scripts,
 	ScrollRestoration,
 	useLoaderData,
@@ -101,6 +102,8 @@ export async function loader({ request }: LoaderFunctionArgs) {
 									},
 								},
 							},
+							// maybe remove this, get it elsewhere
+							movies: { select: { id: true, title: true } },
 						},
 						where: { id: userId },
 					}),
@@ -196,8 +199,12 @@ function App() {
 	const isOnSearchPage = matches.find((m) => m.id === 'routes/users+/index')
 	const searchBar = isOnSearchPage ? null : <SearchBar status="idle" />
 	const allowIndexing = data.ENV.ALLOW_INDEXING !== 'false'
+	const userName = user?.name ?? 'Paul'
 	useToast(data.toast)
 
+	if (user && user.id && user.movies) {
+		redirect(`/movies/${user.username}`)
+	}
 	return (
 		<Document
 			nonce={nonce}
@@ -206,9 +213,9 @@ function App() {
 			env={data.ENV}
 		>
 			<div className="flex h-screen flex-col justify-between">
-				<header className="mb-8 flex w-full flex-row px-8 py-6 border-b border-gray-light">
+				<header className="border-gray-light mb-8 flex w-full flex-row border-b px-8 py-6">
 					<nav className="flex w-full flex-wrap items-center justify-between gap-4 sm:flex-nowrap md:gap-8">
-						<Logo />
+						<Logo name={userName} />
 						<div className="ml-auto hidden max-w-sm flex-1 sm:block">
 							{searchBar}
 						</div>
@@ -239,14 +246,11 @@ function App() {
 	)
 }
 
-function Logo() {
-	return (
-		// <Link to="/" className="group grid text-xl font-semibold leading-snug">
-		<Link to="/" className="group grid leading-snug">
-			<h1 className="text-h1 text-xl">Paul's Movie List</h1>
-		</Link>
-	)
-}
+const Logo = ({ name }: { name: string }) => (
+	<Link to="/" className="group grid leading-snug">
+		<h1 className="text-h1 text-xxl">Movie List</h1>
+	</Link>
+)
 
 function AppWithProviders() {
 	const data = useLoaderData<typeof loader>()
@@ -255,6 +259,15 @@ function AppWithProviders() {
 			<App />
 		</HoneypotProvider>
 	)
+}
+
+export function redirectToList() {
+	const user = useOptionalUser()
+	const redirectToList = user?.id ? `/movies/${user.username}` : null
+	if (redirectToList) {
+		console.log('redirecting to', redirectToList)
+		return redirect(redirectToList)
+	}
 }
 
 export default withSentry(AppWithProviders)
@@ -294,9 +307,16 @@ function UserDropdown() {
 						</Link>
 					</DropdownMenuItem>
 					<DropdownMenuItem asChild>
-						<Link prefetch="intent" to={`/users/${user.username}/notes`}>
-							<Icon className="text-body-md" name="pencil-2">
-								Notes
+						<Link prefetch="intent" to={`/users`}>
+							<Icon className="text-body-md" name="dashboard">
+								Friends
+							</Icon>
+						</Link>
+					</DropdownMenuItem>
+					<DropdownMenuItem asChild>
+						<Link prefetch="intent" to={`/users`}>
+							<Icon className="text-body-md" name="plus-circled">
+								Add movie
 							</Icon>
 						</Link>
 					</DropdownMenuItem>
