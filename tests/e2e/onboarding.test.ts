@@ -27,9 +27,9 @@ const test = base.extend<{
 		password: string
 	}
 }>({
-	getOnboardingData: async ({}, use) => {
+	getOnboardingData: async ({}, getData) => {
 		const userData = createUser()
-		await use(() => {
+		await getData(() => {
 			const onboardingData = {
 				...userData,
 				password: faker.internet.password(),
